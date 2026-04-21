@@ -1360,32 +1360,39 @@ window.actualizarMetaCustom = function(idx) {
     }
 
     function renderEquipo() {
-        const container = document.getElementById('equipo-container');
-        container.innerHTML = equipoData.map((m, idx) => {
-            let avatarHtml = '';
-            if (m.foto) {
-                avatarHtml = `<img class="avatar-img" src="${m.foto}" alt="${escapeHtml(m.nombre)}">`;
-            } else {
-                avatarHtml = `<div class="avatar-img" style="font-size:48px;">${m.avatar || '👤'}</div>`;
-            }
-            return `
-                <div class="miembro-card">
-                    <div class="miembro-header">
-                        ${avatarHtml}
-                        <div class="miembro-nombre">${escapeHtml(m.nombre)}</div>
-                        <div class="miembro-cargo">${escapeHtml(m.cargo)}</div>
-                    </div>
-                    <div class="miembro-info">
-                        <div class="info-texto">${escapeHtml(m.info)}</div>
-                        <div class="miembro-botones">
-                            <button class="btn-editar-miembro" onclick="abrirModalEditarMiembro(${idx})">✏️ Editar</button>
-                            <button class="btn-eliminar-miembro" onclick="eliminarMiembro(${idx})">🗑 Eliminar</button>
-                        </div>
-                    </div>
+    const container = document.getElementById('equipo-container');
+    const esAdmin = localStorage.getItem('adminSolicitudes') === 'true';
+    
+    container.innerHTML = equipoData.map((m, idx) => {
+        let avatarHtml = '';
+        if (m.foto) {
+            avatarHtml = `<img class="avatar-img" src="${m.foto}" alt="${escapeHtml(m.nombre)}">`;
+        } else {
+            avatarHtml = `<div class="avatar-img" style="font-size:48px;">${m.avatar || '👤'}</div>`;
+        }
+        
+        const botonesHtml = esAdmin ? `
+            <div class="miembro-botones">
+                <button class="btn-editar-miembro" onclick="abrirModalEditarMiembro(${idx})">✏️ Editar</button>
+                <button class="btn-eliminar-miembro" onclick="eliminarMiembro(${idx})">🗑 Eliminar</button>
+            </div>
+        ` : '';
+        
+        return `
+            <div class="miembro-card">
+                <div class="miembro-header">
+                    ${avatarHtml}
+                    <div class="miembro-nombre">${escapeHtml(m.nombre)}</div>
+                    <div class="miembro-cargo">${escapeHtml(m.cargo)}</div>
                 </div>
-            `;
-        }).join('');
-    }
+                <div class="miembro-info">
+                    <div class="info-texto">${escapeHtml(m.info)}</div>
+                    ${botonesHtml}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
 
     window.eliminarMiembro = function(idx) {
         if (confirm(`¿Eliminar a ${equipoData[idx].nombre} del equipo?`)) {
