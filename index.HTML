@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Cruz y Cía Ltda. | Serviteca Curicó</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --azul-profundo: #0a2540;
+            --azul-medio: #1a4b6e;
+            --azul-claro: #2c7da0;
+            --amarillo-energia: #ffd166;
+            --gris-suave: #f4f7fc;
+            --gris-texto: #2d3e50;
+            --blanco: #ffffff;
+            --sombra: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+            --border-radius: 20px;
+            --verde: #28a745;
+            --rojo: #dc3545;
+            --naranja: #fd7e14;
+            --morado: #6f42c1;
+            --celeste: #17a2b8;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            background: var(--gris-suave);
+            color: var(--gris-texto);
+            scroll-behavior: smooth;
+        }
+
+        nav {
+            background: rgba(10, 37, 64, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            height: 70px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo span {
+            background: var(--amarillo-energia);
+            color: var(--azul-profundo);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            background: var(--amarillo-energia);
+            color: var(--azul-profundo);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-medio) 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "⚡";
+            font-size: 300px;
+            position: absolute;
+            opacity: 0.05;
+            bottom: -50px;
+            right: -50px;
+            transform: rotate(-15deg);
+        }
+
+        .hero-logo {
+            max-width: 120px;
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        section {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            border-left: 6px solid var(--amarillo-energia);
+            padding-left: 20px;
+            color: var(--azul-profundo);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-agregar-miembro {
+            background: var(--verde);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* NUEVAS SECCIONES EN GRID */
+        .utilidades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .utilidad-card {
+            background: var(--blanco);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+        }
+
+        .utilidad-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        .utilidad-titulo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--azul-profundo);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--amarillo-energia);
+            padding-bottom: 10px;
+        }
+
+        /* Tablero de Metas */
+        .metas-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .meta-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .meta-nombre {
+            font-weight: 700;
+            color: var(--azul-profundo);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 20px;
+            height: 20px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .progress-fill {
+            background: var(--verde);
+            height: 100%;
+            border-radius: 20px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .meta-puntos {
+            font-size: 0.8rem;
+            color: var(--naranja);
+            font-weight: 600;
+        }
+
+        /* Conversor de Unidades */
+        .conversor-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .conversor-input-group input, .conversor-input-group select {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        .conversor-resultado {
+            background: var(--azul-profundo);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Campanita */
+        .campanita {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--naranja);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+            transition: all 0.3s;
+            font-size: 1.5rem;
+        }
+
+        .campanita:hover {
+            transform: scale(1.1);
+            background: var(--rojo);
+        }
+
+        .campanita.tiene-notificacion {
+            animation: vibrar 0.5s ease-in-out infinite;
+        }
+
+        @keyframes vibrar {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+        .servicio-card {
+            background: var(--blanco);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            transition: all 0.3s ease;
+            box-shadow: var(--sombra);
+            text-align: center;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        .servicio-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .equipo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .miembro-card {
+            background: var(--blanco);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .miembro-header {
+            background: linear-gradient(135deg, var(--azul-medio), var(--azul-profundo));
+            padding: 24px;
+            text-align: center;
+            color: white;
+        }
+
+        .avatar-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--azul-profundo);
+            border: 4px solid white;
+            object-fit: cover;
+            background: var(--amarillo-energia);
+        }
+
+        .miembro-nombre {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .miembro-cargo {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 6px;
+        }
+
+        .miembro-info {
+            padding: 20px;
+        }
+
+        .info-texto {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #4a5568;
+            margin-bottom: 16px;
+            min-height: 80px;
+        }
+
+        .miembro-botones {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-editar-miembro {
+            background: var(--azul-claro);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .btn-eliminar-miembro {
+            background: var(--rojo);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .anticipo-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--blanco);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            box-shadow: var(--sombra);
+        }
+
+        .alerta-fechas {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--azul-profundo);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .btn-enviar {
+            background: var(--azul-profundo);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .solicitudes-panel {
+            background: var(--blanco);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-top: 40px;
+            box-shadow: var(--sombra);
+            display: none;
+        }
+
+        .solicitudes-panel.visible {
+            display: block;
+        }
+
+        .solicitud-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--naranja);
+            transition: all 0.2s;
+        }
+
+        .solicitud-item.aprobada {
+            border-left-color: var(--verde);
+            background: #e8f5e9;
+        }
+
+        .solicitud-item.rechazada {
+            border-left-color: var(--rojo);
+            background: #ffebee;
+        }
+
+        .solicitud-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .solicitud-fecha {
+            font-size: 0.75rem;
+            color: #6c757d;
+        }
+
+        .solicitud-nombre {
+            font-weight: 700;
+            color: var(--azul-profundo);
+            font-size: 1rem;
+        }
+
+        .solicitud-detalle {
+            font-size: 0.85rem;
+            color: #555;
+            margin: 8px 0;
+        }
+
+        .solicitud-botones {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-estado {
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .btn-aprobar {
+            background: var(--verde);
+            color: white;
+        }
+
+        .btn-rechazar {
+            background: var(--rojo);
+            color: white;
+        }
+
+        .btn-eliminar {
+            background: #6c757d;
+            color: white;
+        }
+
+        .estado-badge {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .estado-pendiente {
+            background: var(--naranja);
+            color: white;
+        }
+
+        .estado-aprobada {
+            background: var(--verde);
+            color: white;
+        }
+
+        .estado-rechazada {
+            background: var(--rojo);
+            color: white;
+        }
+
+        .admin-login-box {
+            background: var(--blanco);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-top: 20px;
+            text-align: center;
+            border: 2px solid var(--amarillo-energia);
+        }
+
+        .admin-login-box input {
+            padding: 12px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            width: 250px;
+            margin-right: 10px;
+        }
+
+        .documentos-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn-admin {
+            background: var(--amarillo-energia);
+            color: var(--azul-profundo);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .lista-documentos {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .doc-item {
+            background: var(--blanco);
+            padding: 16px 20px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .btn-doc {
+            background: var(--azul-claro);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .btn-danger {
+            background: var(--rojo);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .panel-admin {
+            background: var(--blanco);
+            padding: 24px;
+            border-radius: var(--border-radius);
+            margin-top: 32px;
+            display: none;
+            border: 2px solid var(--amarillo-energia);
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .tag-doc { background: #dbeafe; color: #1e40af; }
+        .tag-link { background: #d1fae5; color: #065f46; }
+        .tag-reglamento { background: #fce7f3; color: #9d174d; }
+        .tag-circular { background: #fef3c7; color: #92400e; }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-content h3 {
+            margin-bottom: 20px;
+            color: var(--azul-profundo);
+        }
+        .modal-botones {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn-cancelar {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 40px;
+            flex: 1;
+            cursor: pointer;
+        }
+        .avatar-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            background: var(--amarillo-energia);
+            border: 3px solid var(--azul-profundo);
+        }
+        .avatar-preview-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .file-input-label {
+            background: var(--azul-claro);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .foto-actual {
+            font-size: 0.7rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        footer {
+            background: var(--azul-profundo);
+            color: white;
+            text-align: center;
+            padding: 32px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .anticipo-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .utilidades-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">
+        <img src="https://i.imgur.com/EHRcwAL.png" alt="Cruz y Cía" onerror="this.src='https://placehold.co/45x45?text=Cruz'">
+        <span>Serviteca Curicó</span>
+    </div>
+    <div class="nav-links">
+        <a onclick="ir('inicio')">Inicio</a>
+        <a onclick="ir('servicios')">Servicios</a>
+        <a onclick="ir('equipo')">Equipo</a>
+        <a onclick="ir('anticipo')">Anticipo</a>
+        <a onclick="ir('utilidades')">📊 Utilidades</a>
+        <a onclick="ir('documentos')">Documentos</a>
+        <a onclick="ir('solicitudes')">📋 Solicitudes</a>
+        <a onclick="ir('contacto')">Contacto</a>
+    </div>
+</nav>
+
+<div class="hero" id="inicio">
+    <img class="hero-logo" src="https://i.imgur.com/EHRcwAL.png" alt="Logo Cruz y Cía" onerror="this.src='https://placehold.co/120x120?text=CRUZ'">
+    <h1>Cruz y Cía Ltda.</h1>
+    <p>🔧 Especialistas en tu vehículo | <strong>52 años</strong> de confianza en Curicó</p>
+</div>
+
+<section id="servicios">
+    <div class="section-title">⚙️ Nuestros Servicios</div>
+    <div class="servicios-grid">
+        <div class="servicio-card"><div class="servicio-icon">🛢️</div><h3>Cambio de Aceite</h3><p>Con aceites certificados y filtros originales.</p></div>
+        <div class="servicio-card"><div class="servicio-icon">🔧</div><h3>Mantención Preventiva</h3><p>Revisión completa de frenos, suspensión y motor.</p></div>
+        <div class="servicio-card"><div class="servicio-icon">🔋</div><h3>Baterias.Pastillas</h3><p>Instalación. Rectificado de Discos.</p></div>
+        <div class="servicio-card"><div class="servicio-icon">⚙️</div><h3>Alineación y Balanceo</h3><p>Manejo estable y ahorro de neumáticos.</p></div>
+        <div class="servicio-card"><div class="servicio-icon">🛞</div><h3>Neumáticos</h3><p>Venta, instalación y reparación al instante.</p></div>
+        <div class="servicio-card"><div class="servicio-icon">📋</div><h3>Revisión Técnica</h3><p>Preinspección y asesoría para que pases sin problemas.</p></div>
+    </div>
+</section>
+
+<!-- NUEVA SECCIÓN DE UTILIDADES -->
+<section id="utilidades">
+    <div class="section-title">📊 Herramientas y Utilidades</div>
+    <div class="utilidades-grid">
+        
+        <!-- Tablero de Metas (Gamificación) -->
+        <div class="utilidad-card">
+            <div class="utilidad-titulo">
+                <span>🏆</span> Tablero de Metas
+            </div>
+            <div class="metas-container" id="metas-container">
+                <!-- Las metas se cargan dinámicamente -->
+            </div>
+            <div style="margin-top: 15px; text-align: center; font-size: 0.75rem; color: #888;">
+                ⭐ Cada meta completada suma puntos
+            </div>
+        </div>
+
+        <!-- Conversor de Unidades Técnico -->
+        <div class="utilidad-card">
+            <div class="utilidad-titulo">
+                <span>🔧</span> Conversor Técnico
+            </div>
+            <div class="conversor-input-group">
+                <input type="number" id="valor-convertir" placeholder="Valor" step="any">
+                <select id="unidad-origen">
+                    <option value="psi_bar">PSI → BAR</option>
+                    <option value="bar_psi">BAR → PSI</option>
+                    <option value="mm_pulgadas">Milímetros → Pulgadas</option>
+                    <option value="pulgadas_mm">Pulgadas → Milímetros</option>
+                    <option value="km_millas">Kilómetros → Millas</option>
+                    <option value="millas_km">Millas → Kilómetros</option>
+                    <option value="litros_galones">Litros → Galones (US)</option>
+                    <option value="galones_litros">Galones (US) → Litros</option>
+                </select>
+            </div>
+            <button class="btn-admin" onclick="convertirUnidad()" style="width:100%; margin-bottom:10px;">🔄 Convertir</button>
+            <div class="conversor-resultado" id="resultado-conversion">
+                Resultado: ---
+            </div>
+            <div style="margin-top: 10px; font-size: 0.7rem; color: #888; text-align: center;">
+                Útil para diagnósticos y especificaciones técnicas
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="equipo">
+    <div class="section-title">
+        👥 Nuestro Equipo Curicó
+        <button class="btn-agregar-miembro" onclick="abrirModalAgregarMiembro()">➕ Agregar miembro</button>
+    </div>
+    <div class="equipo-grid" id="equipo-container"></div>
+</section>
+
+<section id="anticipo">
+    <div class="section-title">💰 Solicitud de Anticipo</div>
+    <div class="anticipo-wrapper">
+        <div>
+            <div id="alerta-fechas" class="alerta-fechas" style="display: flex;">
+                <span>📅</span>
+                <span><strong>Información:</strong> Los anticipos están disponibles <strong>todos los días del mes</strong>. Puedes solicitar el tuyo cuando lo necesites.</span>
+            </div>
+            <h3>📌 Reglas del anticipo</h3>
+            <ul style="margin-top: 16px; list-style: none; line-height: 2;">
+                <li>✅ Máximo 30% del sueldo líquido</li>
+                <li>✅ Descuento en cuota siguiente</li>
+                <li>✅ Aprobación en 24 horas hábiles</li>
+            </ul>
+        </div>
+        <div>
+            <h3>📋 Formulario</h3>
+            <div class="form-group"><label>Nombre completo</label><input type="text" id="ant-nombre" placeholder="Ej: María González"></div>
+            <div class="form-group"><label>Cargo</label><select id="ant-cargo"><option>Jefe Local</option><option>Jefe Administrativo</option><option>Junior Administrativo</option><option>Vendedor</option><option>Operario</option><option>Cajera</option><option>Bodeguero</option></select></div>
+            <div class="form-group"><label>Monto (CLP)</label><input type="number" id="ant-monto" min="10000" step="5000"></div>
+            <div class="form-group"><label>📅 Fecha requerida del anticipo</label><input type="date" id="ant-fecha"></div>
+            <div class="form-group"><label>Motivo</label><textarea id="ant-motivo" rows="2"></textarea></div>
+            <button class="btn-enviar" onclick="enviarAnticipo()">📩 Enviar solicitud</button>
+            <div id="respuesta-anticipo" style="margin-top: 16px;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN DE SOLICITUDES (SOLO ADMIN) -->
+<section id="solicitudes">
+    <div class="section-title">📋 Panel de Solicitudes de Anticipo</div>
+    
+    <div id="admin-solicitudes-area">
+        <div class="admin-login-box" id="login-solicitudes">
+            <h3>🔐 Acceso Administrador</h3>
+            <input type="password" id="solicitudes-pass" placeholder="Contraseña">
+            <button class="btn-enviar" style="width: auto; padding: 12px 24px; margin-top: 10px;" onclick="loginSolicitudes()">Ingresar</button>
+        </div>
+        
+        <div id="solicitudes-panel" class="solicitudes-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
+                <h3>📋 Listado de Solicitudes</h3>
+                <button class="btn-admin" onclick="logoutSolicitudes()">🚪 Cerrar sesión</button>
+            </div>
+            <div id="lista-solicitudes"></div>
+        </div>
+    </div>
+</section>
+
+<section id="documentos">
+    <div class="section-title">📄 Documentos Internos</div>
+    <div class="documentos-header">
+        <div>📂 Aquí encontrarás reglamentos, circulares y más</div>
+        <button class="btn-admin" onclick="toggleAdminPanel()">🔐 Admin (subir docs)</button>
+    </div>
+    <div id="lista-docs" class="lista-documentos"></div>
+    <div id="panel-admin" class="panel-admin">
+        <h3>➕ Subir nuevo documento</h3>
+        <div class="form-group"><label>Título</label><input type="text" id="doc-titulo" placeholder="Ej: Reglamento interno"></div>
+        <div class="form-group"><label>Enlace (Drive/PDF)</label><input type="text" id="doc-url" placeholder="https://..."></div>
+        <div class="form-group"><label>Tipo</label>
+            <select id="doc-tipo">
+                <option value="doc">📄 Documento</option>
+                <option value="link">🔗 Enlace</option>
+                <option value="reglamento">📋 Reglamento</option>
+                <option value="circular">📢 Circular</option>
+            </select>
+        </div>
+        <div class="form-group"><label>Descripción (opcional)</label><input type="text" id="doc-desc" placeholder="Breve descripción"></div>
+        <button class="btn-enviar" onclick="agregarDocumento()">Publicar documento</button>
+        <hr style="margin: 20px 0;">
+        <button class="btn-admin" onclick="cerrarPanelAdmin()">Cerrar panel</button>
+    </div>
+</section>
+
+<section id="contacto">
+    <div class="section-title">📞 Contacto</div>
+    <div style="background: white; padding: 32px; border-radius: 20px; text-align: center;">
+        <p>✉️ edgardoisael@gmail.com | 📍 Curicó, Maule | 📞 +56 75 2324034</p>
+    </div>
+</section>
+
+<footer>
+    <p>Cruz y Cía Ltda. - Excelencia en servicio automotriz desde 1995</p>
+</footer>
+
+<!-- CAMPANITA DE NOTIFICACIONES -->
+<div class="campanita" id="campanita" onclick="mostrarNotificaciones()">
+    🔔
+    <span id="notif-count" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 10px; display: flex; align-items: center; justify-content: center; display: none;">0</span>
+</div>
+
+<!-- Modal para agregar/editar miembro -->
+<div id="modal-editar" class="modal">
+    <div class="modal-content">
+        <h3 id="modal-titulo">✏️ Editar miembro</h3>
+        <input type="hidden" id="edit-index">
+        <div class="form-group"><label>Nombre completo</label><input type="text" id="edit-nombre" placeholder="Ej: Roberto Muñoz"></div>
+        <div class="form-group"><label>Cargo</label><input type="text" id="edit-cargo" placeholder="Ej: Bodeguero"></div>
+        <div class="form-group">
+            <label>Foto o Avatar</label>
+            <div class="avatar-preview" id="avatar-preview">👤</div>
+            <label class="file-input-label">📁 Subir foto
+                <input type="file" id="edit-foto" accept="image/*" style="display:none" onchange="previewFoto(event)">
+            </label>
+            <div class="foto-actual" id="foto-actual-text">Actual: Emoji</div>
+            <button class="btn-admin" style="margin-top:5px; padding:5px 10px; font-size:0.7rem;" onclick="cambiarAEmoji()">Usar emoji en lugar de foto</button>
+        </div>
+        <div class="form-group"><label>Avatar (emoji) - si no usas foto</label><input type="text" id="edit-avatar" placeholder="Ej: 📦 o 👨‍💼" maxlength="2"></div>
+        <div class="form-group"><label>Información / Descripción</label><textarea id="edit-info" rows="3" placeholder="Descripción del miembro..."></textarea></div>
+        <div class="modal-botones">
+            <button class="btn-enviar" onclick="guardarEdicionMiembro()">✅ Guardar cambios</button>
+            <button class="btn-cancelar" onclick="cerrarModalEditar()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ==================== NOTIFICACIONES ====================
+    let notificaciones = JSON.parse(localStorage.getItem('notificaciones')) || [];
+    
+    function agregarNotificacion(mensaje, tipo = 'info') {
+        const nuevaNotif = {
+            id: Date.now(),
+            mensaje: mensaje,
+            tipo: tipo,
+            fecha: new Date().toLocaleString(),
+            leida: false
+        };
+        notificaciones.unshift(nuevaNotif);
+        localStorage.setItem('notificaciones', JSON.stringify(notificaciones));
+        actualizarCampanita();
+        
+        // Reproducir sonido
+        const audio = new Audio('data:audio/wav;base64,U3RlYWx0aCBhbmQgU291bmQ=');
+        audio.play().catch(e => console.log('Sonido no soportado'));
+        
+        // Mostrar notificación del sistema si está permitido
+        if (Notification.permission === 'granted') {
+            new Notification('Cruz y Cía - Nueva información', { body: mensaje });
+        }
+    }
+    
+    function actualizarCampanita() {
+        const noLeidas = notificaciones.filter(n => !n.leida).length;
+        const notifCount = document.getElementById('notif-count');
+        const campanita = document.getElementById('campanita');
+        
+        if (noLeidas > 0) {
+            notifCount.style.display = 'flex';
+            notifCount.innerText = noLeidas > 9 ? '9+' : noLeidas;
+            campanita.classList.add('tiene-notificacion');
+        } else {
+            notifCount.style.display = 'none';
+            campanita.classList.remove('tiene-notificacion');
+        }
+    }
+    
+    function mostrarNotificaciones() {
+        const noLeidas = notificaciones.filter(n => !n.leida);
+        if (noLeidas.length === 0) {
+            alert('📭 No tienes notificaciones nuevas');
+        } else {
+            let mensaje = '📢 NOTIFICACIONES NUEVAS:\n\n';
+            noLeidas.forEach(n => {
+                mensaje += `• ${n.mensaje}\n  (${n.fecha})\n\n`;
+            });
+            mensaje += '✅ Estas notificaciones se marcarán como leídas';
+            alert(mensaje);
+            
+            // Marcar como leídas
+            notificaciones.forEach(n => n.leida = true);
+            localStorage.setItem('notificaciones', JSON.stringify(notificaciones));
+            actualizarCampanita();
+        }
+    }
+    
+    // Solicitar permiso para notificaciones del sistema
+    if (Notification.permission === 'default') {
+        Notification.requestPermission();
+    }
+
+    // ==================== METAS (Gamificación) ====================
+    let metas = JSON.parse(localStorage.getItem('metas')) || [
+    { nombre: "Cambios de aceite", objetivo: 150, actual: 0, unidad: "cambios" },
+    { nombre: "Alineaciones realizadas", objetivo: 80, actual: 0, unidad: "alineaciones" },
+    { nombre: "Neumáticos vendidos", objetivo: 300, actual: 0, unidad: "neumáticos" },
+    { nombre: "Clientes atendidos", objetivo: 1000, actual: 0, unidad: "clientes" }
+];
+    
+    function renderMetas() {
+    const container = document.getElementById('metas-container');
+    let totalPuntos = 0;
+    // Verificar si el admin está logueado (para mostrar botones)
+    const esAdmin = localStorage.getItem('adminSolicitudes') === 'true';
+    
+    container.innerHTML = metas.map((meta, idx) => {
+        const porcentaje = Math.min(100, (meta.actual / meta.objetivo) * 100);
+        const completada = meta.actual >= meta.objetivo;
+        if (completada) totalPuntos += 10;
+        
+        return `
+            <div class="meta-item">
+                <div class="meta-nombre">🎯 ${meta.nombre}</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${porcentaje}%;">${Math.round(porcentaje)}%</div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <span>📊 ${meta.actual} / ${meta.objetivo} ${meta.unidad}</span>
+                    <span class="meta-puntos">${completada ? '✅ Meta cumplida +10 pts' : '⏳ En progreso'}</span>
+                </div>
+                ${esAdmin ? `
+                    <div style="display: flex; gap: 8px; margin-top: 10px;">
+                        <button class="btn-admin" style="padding: 5px 10px; font-size: 0.7rem;" onclick="actualizarMeta(${idx}, 1)">➕ +1</button>
+                        <button class="btn-admin" style="padding: 5px 10px; font-size: 0.7rem;" onclick="actualizarMeta(${idx}, 5)">➕ +5</button>
+                        <button class="btn-admin" style="padding: 5px 10px; font-size: 0.7rem;" onclick="actualizarMeta(${idx}, 10)">➕ +10</button>
+                        <input type="number" id="custom-meta-${idx}" placeholder="Cantidad" style="width: 80px; padding: 5px; border-radius: 8px; border: 1px solid #ddd;">
+                        <button class="btn-admin" style="padding: 5px 10px; font-size: 0.7rem;" onclick="actualizarMetaCustom(${idx})">➕ Agregar</button>
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    }).join('');
+    
+    // Mostrar puntos totales
+    const puntosDiv = document.createElement('div');
+    puntosDiv.style.marginTop = '15px';
+    puntosDiv.style.textAlign = 'center';
+    puntosDiv.style.padding = '10px';
+    puntosDiv.style.background = '#e8f5e9';
+    puntosDiv.style.borderRadius = '10px';
+    puntosDiv.innerHTML = `<strong>🏅 PUNTOS TOTALES: ${totalPuntos} pts</strong>`;
+    
+    const existingPuntos = container.querySelector('.puntos-totales');
+    if (existingPuntos) existingPuntos.remove();
+    puntosDiv.className = 'puntos-totales';
+    container.appendChild(puntosDiv);
+}
+
+// Función para actualizar con cantidad personalizada
+window.actualizarMetaCustom = function(idx) {
+    const input = document.getElementById(`custom-meta-${idx}`);
+    const valor = parseInt(input.value);
+    if (isNaN(valor) || valor <= 0) {
+        alert('Ingresa una cantidad válida');
+        return;
+    }
+    actualizarMeta(idx, valor);
+    input.value = '';
+};
+    
+    // Función para actualizar metas (solo admin puede hacerlo desde consola)
+    window.actualizarMeta = function(idx, valor) {
+        if (idx >= 0 && idx < metas.length) {
+            metas[idx].actual += valor;
+            localStorage.setItem('metas', JSON.stringify(metas));
+            renderMetas();
+            
+            // Verificar si se completó la meta
+            if (metas[idx].actual >= metas[idx].objetivo && metas[idx].actual - valor < metas[idx].objetivo) {
+                agregarNotificacion(`🎉 ¡Meta cumplida! ${metas[idx].nombre} alcanzó su objetivo. +10 puntos para el equipo.`);
+            }
+        }
+    };
+    
+    // ==================== CONVERSOR DE UNIDADES ====================
+    window.convertirUnidad = function() {
+        const valor = parseFloat(document.getElementById('valor-convertir').value);
+        const conversion = document.getElementById('unidad-origen').value;
+        const resultadoDiv = document.getElementById('resultado-conversion');
+        
+        if (isNaN(valor)) {
+            resultadoDiv.innerHTML = '❌ Ingresa un valor válido';
+            return;
+        }
+        
+        let resultado = 0;
+        let unidadDestino = '';
+        
+        switch(conversion) {
+            case 'psi_bar':
+                resultado = valor * 0.0689476;
+                unidadDestino = 'BAR';
+                break;
+            case 'bar_psi':
+                resultado = valor * 14.5038;
+                unidadDestino = 'PSI';
+                break;
+            case 'mm_pulgadas':
+                resultado = valor / 25.4;
+                unidadDestino = 'pulgadas';
+                break;
+            case 'pulgadas_mm':
+                resultado = valor * 25.4;
+                unidadDestino = 'milímetros';
+                break;
+            case 'km_millas':
+                resultado = valor * 0.621371;
+                unidadDestino = 'millas';
+                break;
+            case 'millas_km':
+                resultado = valor * 1.60934;
+                unidadDestino = 'kilómetros';
+                break;
+            case 'litros_galones':
+                resultado = valor * 0.264172;
+                unidadDestino = 'galones (US)';
+                break;
+            case 'galones_litros':
+                resultado = valor * 3.78541;
+                unidadDestino = 'litros';
+                break;
+            default:
+                resultado = valor;
+                unidadDestino = '';
+        }
+        
+        resultadoDiv.innerHTML = `🔧 ${valor} → ${resultado.toFixed(4)} ${unidadDestino}`;
+    };
+    
+    // ==================== SOLICITUDES DE ANTICIPO ====================
+    let solicitudes = JSON.parse(localStorage.getItem('solicitudesAnticipo')) || [];
+
+    function guardarSolicitudes() {
+        localStorage.setItem('solicitudesAnticipo', JSON.stringify(solicitudes));
+    }
+
+    function renderSolicitudes() {
+        const container = document.getElementById('lista-solicitudes');
+        if (solicitudes.length === 0) {
+            container.innerHTML = "<p style='text-align:center; color:#6c757d;'>📭 No hay solicitudes aún.</p>";
+            return;
+        }
+        
+        container.innerHTML = solicitudes.map((sol, idx) => {
+            let estadoClass = '';
+            let estadoTexto = '';
+            if (sol.estado === 'aprobada') {
+                estadoClass = 'estado-aprobada';
+                estadoTexto = 'Aprobada';
+            } else if (sol.estado === 'rechazada') {
+                estadoClass = 'estado-rechazada';
+                estadoTexto = 'Rechazada';
+            } else {
+                estadoClass = 'estado-pendiente';
+                estadoTexto = 'Pendiente';
+            }
+            
+            return `
+                <div class="solicitud-item ${sol.estado}">
+                    <div class="solicitud-header">
+                        <div>
+                            <span class="solicitud-nombre">${escapeHtml(sol.nombre)}</span>
+                            <span class="estado-badge ${estadoClass}" style="margin-left: 10px;">${estadoTexto}</span>
+                        </div>
+                        <div class="solicitud-fecha">${sol.fechaSolicitud}</div>
+                    </div>
+                    <div class="solicitud-detalle"><strong>Cargo:</strong> ${sol.cargo}</div>
+                    <div class="solicitud-detalle"><strong>Monto:</strong> $${parseInt(sol.monto).toLocaleString()} CLP</div>
+                    <div class="solicitud-detalle"><strong>Fecha requerida:</strong> ${sol.fechaRequerida || 'No especificada'}</div>
+                    <div class="solicitud-detalle"><strong>Motivo:</strong> ${escapeHtml(sol.motivo)}</div>
+                    <div class="solicitud-botones">
+                        ${sol.estado !== 'aprobada' ? `<button class="btn-estado btn-aprobar" onclick="cambiarEstadoSolicitud(${idx}, 'aprobada')">✅ Aprobar</button>` : ''}
+                        ${sol.estado !== 'rechazada' ? `<button class="btn-estado btn-rechazar" onclick="cambiarEstadoSolicitud(${idx}, 'rechazada')">❌ Rechazar</button>` : ''}
+                        <button class="btn-estado btn-eliminar" onclick="eliminarSolicitud(${idx})">🗑 Eliminar</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function escapeHtml(texto) {
+        if (!texto) return '';
+        const div = document.createElement('div');
+        div.textContent = texto;
+        return div.innerHTML;
+    }
+
+    function cambiarEstadoSolicitud(idx, nuevoEstado) {
+        solicitudes[idx].estado = nuevoEstado;
+        guardarSolicitudes();
+        renderSolicitudes();
+        agregarNotificacion(`📝 Solicitud de ${solicitudes[idx].nombre} fue ${nuevoEstado === 'aprobada' ? 'APROBADA' : 'RECHAZADA'}`);
+        alert(`✅ Solicitud ${nuevoEstado === 'aprobada' ? 'aprobada' : 'rechazada'}`);
+    }
+
+    function eliminarSolicitud(idx) {
+        if (confirm('¿Eliminar esta solicitud permanentemente?')) {
+            const nombre = solicitudes[idx].nombre;
+            solicitudes.splice(idx, 1);
+            guardarSolicitudes();
+            renderSolicitudes();
+            alert("✅ Solicitud eliminada");
+        }
+    }
+
+    function loginSolicitudes() {
+        const pass = document.getElementById('solicitudes-pass').value;
+        if (pass === 'admin2025') {
+            localStorage.setItem('adminSolicitudes', 'true');
+            document.getElementById('login-solicitudes').style.display = 'none';
+            document.getElementById('solicitudes-panel').classList.add('visible');
+            renderSolicitudes();
+        } else {
+            alert('❌ Contraseña incorrecta');
+        }
+    }
+
+    function logoutSolicitudes() {
+        localStorage.removeItem('adminSolicitudes');
+        document.getElementById('login-solicitudes').style.display = 'block';
+        document.getElementById('solicitudes-panel').classList.remove('visible');
+        document.getElementById('solicitudes-pass').value = '';
+    }
+
+    function verificarSesionSolicitudes() {
+        if (localStorage.getItem('adminSolicitudes') === 'true') {
+            document.getElementById('login-solicitudes').style.display = 'none';
+            document.getElementById('solicitudes-panel').classList.add('visible');
+            renderSolicitudes();
+        }
+    }
+
+    // ==================== ANTICIPO ====================
+    window.enviarAnticipo = function() {
+        const nombre = document.getElementById('ant-nombre').value.trim();
+        const monto = document.getElementById('ant-monto').value;
+        const fechaRequerida = document.getElementById('ant-fecha').value;
+        const hoy = new Date();
+        const respuestaDiv = document.getElementById('respuesta-anticipo');
+
+        if (!nombre || !monto) {
+            respuestaDiv.innerHTML = "<span style='color:red'>❌ Completa nombre y monto</span>";
+            return;
+        }
+
+        const cargo = document.getElementById('ant-cargo').value;
+        const motivo = document.getElementById('ant-motivo').value || "Sin motivo especificado";
+        const fechaTexto = fechaRequerida ? fechaRequerida : "No especificada";
+
+        const nuevaSolicitud = {
+            id: Date.now(),
+            nombre: nombre,
+            cargo: cargo,
+            monto: monto,
+            fechaRequerida: fechaTexto,
+            motivo: motivo,
+            fechaSolicitud: hoy.toLocaleString(),
+            estado: 'pendiente'
+        };
+
+        solicitudes.unshift(nuevaSolicitud);
+        guardarSolicitudes();
+        
+        agregarNotificacion(`📨 Nueva solicitud de anticipo de ${nombre} por $${parseInt(monto).toLocaleString()}`);
+
+        document.getElementById('ant-nombre').value = "";
+        document.getElementById('ant-monto').value = "";
+        document.getElementById('ant-fecha').value = "";
+        document.getElementById('ant-motivo').value = "";
+
+        respuestaDiv.innerHTML = "<span style='color:green'>✅ Solicitud enviada correctamente. El administrador la revisará a la brevedad.</span>";
+        
+        setTimeout(() => {
+            respuestaDiv.innerHTML = "";
+        }, 4000);
+    };
+
+    // ==================== EQUIPO COMPLETO ====================
+    let equipoData = [
+        { nombre: "Eric Neilson", cargo: "Jefe de Local", avatar: "👔", foto: null, info: "52 años de experiencia en gestión automotriz. Lidera el equipo con visión estratégica." },
+        { nombre: "Edgardo Moya", cargo: "Jefe Administrativo", avatar: "📊", foto: null, info: "Control de gestión, RRHH y finanzas. Siempre atento a los detalles." },
+        { nombre: "Manuel Ramos", cargo: "Junior Administrativo", avatar: "👨‍💼", foto: null, info: "Apoyo en gestión administrativa, documentos y trámites internos." },
+        { nombre: "Samuel Toledo", cargo: "Bodeguero Administrativo", avatar: "👨‍💼", foto: null, info: "Control de inventario y repuestos." },
+        { nombre: "Cristian Valdivia", cargo: "Vendedor", avatar: "🏆", foto: null, info: "Atención al cliente de primera. Especialista en neumáticos." },
+        { nombre: "Mauricio Concha", cargo: "Vendedor", avatar: "🏆", foto: null, info: "Atención al cliente de primera. Especialista en neumáticos." },
+        { nombre: "Iván González", cargo: "Operario", avatar: "🔧", foto: null, info: "Mecánico experto en motores y diagnosis." },
+        { nombre: "Luis Ojeda", cargo: "Operario", avatar: "🔧", foto: null, info: "Mecánico experto en motores y diagnosis." },
+        { nombre: "Eduardo Alarcón", cargo: "Operario", avatar: "🔧", foto: null, info: "Mecánico experto en motores y diagnosis." },
+        { nombre: "Richard Romero", cargo: "Operario", avatar: "🔧", foto: null, info: "Mecánico experto en motores y diagnosis." },
+        { nombre: "Carla Sepulveda", cargo: "Cajera Administrativa", avatar: "👩‍💼", foto: null, info: "Atención en caja, facturación y cobranza. La única mujer del equipo, ordenada y eficiente." }
+    ];
+
+    if (localStorage.getItem('equipoData')) {
+        equipoData = JSON.parse(localStorage.getItem('equipoData'));
+    } else {
+        localStorage.setItem('equipoData', JSON.stringify(equipoData));
+    }
+
+    function renderEquipo() {
+        const container = document.getElementById('equipo-container');
+        container.innerHTML = equipoData.map((m, idx) => {
+            let avatarHtml = '';
+            if (m.foto) {
+                avatarHtml = `<img class="avatar-img" src="${m.foto}" alt="${escapeHtml(m.nombre)}">`;
+            } else {
+                avatarHtml = `<div class="avatar-img" style="font-size:48px;">${m.avatar || '👤'}</div>`;
+            }
+            return `
+                <div class="miembro-card">
+                    <div class="miembro-header">
+                        ${avatarHtml}
+                        <div class="miembro-nombre">${escapeHtml(m.nombre)}</div>
+                        <div class="miembro-cargo">${escapeHtml(m.cargo)}</div>
+                    </div>
+                    <div class="miembro-info">
+                        <div class="info-texto">${escapeHtml(m.info)}</div>
+                        <div class="miembro-botones">
+                            <button class="btn-editar-miembro" onclick="abrirModalEditarMiembro(${idx})">✏️ Editar</button>
+                            <button class="btn-eliminar-miembro" onclick="eliminarMiembro(${idx})">🗑 Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    window.eliminarMiembro = function(idx) {
+        if (confirm(`¿Eliminar a ${equipoData[idx].nombre} del equipo?`)) {
+            equipoData.splice(idx, 1);
+            localStorage.setItem('equipoData', JSON.stringify(equipoData));
+            renderEquipo();
+            alert("✅ Miembro eliminado");
+        }
+    };
+
+    function abrirModalAgregarMiembro() {
+        document.getElementById('modal-titulo').innerText = '➕ Agregar nuevo miembro';
+        document.getElementById('edit-index').value = '';
+        document.getElementById('edit-nombre').value = '';
+        document.getElementById('edit-cargo').value = '';
+        document.getElementById('edit-avatar').value = '';
+        document.getElementById('edit-info').value = '';
+        document.getElementById('edit-foto').value = '';
+        document.getElementById('foto-actual-text').innerText = 'Actual: Sin foto';
+        document.getElementById('avatar-preview').innerHTML = '👤';
+        document.getElementById('avatar-preview').style.fontSize = '48px';
+        document.getElementById('modal-editar').style.display = 'flex';
+    }
+
+    window.abrirModalEditarMiembro = function(idx) {
+        const m = equipoData[idx];
+        document.getElementById('modal-titulo').innerText = '✏️ Editar miembro';
+        document.getElementById('edit-index').value = idx;
+        document.getElementById('edit-nombre').value = m.nombre;
+        document.getElementById('edit-cargo').value = m.cargo;
+        document.getElementById('edit-avatar').value = m.avatar || '';
+        document.getElementById('edit-info').value = m.info;
+        
+        if (m.foto) {
+            document.getElementById('avatar-preview').innerHTML = `<img class="avatar-preview-img" src="${m.foto}">`;
+            document.getElementById('foto-actual-text').innerText = 'Actual: Foto';
+        } else {
+            document.getElementById('avatar-preview').innerHTML = m.avatar || '👤';
+            document.getElementById('avatar-preview').style.fontSize = '48px';
+            document.getElementById('foto-actual-text').innerText = `Actual: ${m.avatar || '👤'}`;
+        }
+        document.getElementById('edit-foto').value = '';
+        document.getElementById('modal-editar').style.display = 'flex';
+    };
+
+    function cerrarModalEditar() {
+        document.getElementById('modal-editar').style.display = 'none';
+    }
+
+    let fotoSeleccionada = null;
+
+    window.previewFoto = function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                fotoSeleccionada = e.target.result;
+                document.getElementById('avatar-preview').innerHTML = `<img class="avatar-preview-img" src="${fotoSeleccionada}">`;
+                document.getElementById('foto-actual-text').innerText = 'Nueva foto seleccionada';
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    window.cambiarAEmoji = function() {
+        fotoSeleccionada = null;
+        const emoji = document.getElementById('edit-avatar').value || '👤';
+        document.getElementById('avatar-preview').innerHTML = emoji;
+        document.getElementById('avatar-preview').style.fontSize = '48px';
+        document.getElementById('foto-actual-text').innerText = `Usando emoji: ${emoji}`;
+    };
+
+    window.guardarEdicionMiembro = function() {
+        const idx = document.getElementById('edit-index').value;
+        const nombre = document.getElementById('edit-nombre').value.trim();
+        const cargo = document.getElementById('edit-cargo').value.trim();
+        const avatar = document.getElementById('edit-avatar').value.trim() || '👤';
+        const info = document.getElementById('edit-info').value.trim() || 'Miembro del equipo.';
+        
+        if (!nombre || !cargo) {
+            alert('❌ Completa nombre y cargo');
+            return;
+        }
+
+        const miembroData = {
+            nombre: nombre,
+            cargo: cargo,
+            avatar: avatar,
+            info: info,
+            foto: fotoSeleccionada || null
+        };
+
+        if (idx === '') {
+            equipoData.push(miembroData);
+            agregarNotificacion(`👤 Nuevo miembro agregado: ${nombre} - ${cargo}`);
+        } else {
+            equipoData[parseInt(idx)] = miembroData;
+            agregarNotificacion(`✏️ Miembro actualizado: ${nombre}`);
+        }
+
+        localStorage.setItem('equipoData', JSON.stringify(equipoData));
+        renderEquipo();
+        cerrarModalEditar();
+        fotoSeleccionada = null;
+        alert(`✅ ${nombre} ${idx === '' ? 'agregado' : 'actualizado'} correctamente`);
+    };
+
+    // ==================== DOCUMENTOS ====================
+    let documentos = JSON.parse(localStorage.getItem('documentosCYZ')) || [];
+
+    const ICONS = { doc: '📄', link: '🔗', reglamento: '📋', circular: '📢' };
+    const TAGS = { doc: 'tag-doc', link: 'tag-link', reglamento: 'tag-reglamento', circular: 'tag-circular' };
+    const NAMES = { doc: 'Documento', link: 'Enlace', reglamento: 'Reglamento', circular: 'Circular' };
+
+    function renderDocs() {
+        const lista = document.getElementById('lista-docs');
+        if (documentos.length === 0) {
+            lista.innerHTML = '<div class="empty-state">📂 No hay documentos publicados aún.</div>';
+            return;
+        }
+        lista.innerHTML = documentos.map(d => `
+            <div class="doc-item">
+                <div class="doc-item-icon">${ICONS[d.tipo] || '📄'}</div>
+                <div class="doc-item-info">
+                    <strong>${escapeHtml(d.titulo)}</strong>
+                    <span>${d.desc ? escapeHtml(d.desc) + ' · ' : ''}Publicado el ${d.fecha} por ${d.autor}</span>
+                </div>
+                <div class="doc-item-actions">
+                    <span class="tag ${TAGS[d.tipo]}">${NAMES[d.tipo]}</span>
+                    <a href="${d.url}" target="_blank" class="btn-doc">Abrir</a>
+                    <button class="btn-danger" onclick="eliminarDoc(${d.id})">🗑 Eliminar</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    window.eliminarDoc = function(id) {
+        if (confirm('¿Eliminar este documento permanentemente?')) {
+            const doc = documentos.find(d => d.id === id);
+            documentos = documentos.filter(d => d.id !== id);
+            localStorage.setItem('documentosCYZ', JSON.stringify(documentos));
+            renderDocs();
+            if (doc) agregarNotificacion(`🗑 Documento eliminado: ${doc.titulo}`);
+            alert('✅ Documento eliminado');
+        }
+    };
+
+    window.agregarDocumento = function() {
+        const titulo = document.getElementById('doc-titulo').value.trim();
+        const url = document.getElementById('doc-url').value.trim();
+        const tipo = document.getElementById('doc-tipo').value;
+        const desc = document.getElementById('doc-desc').value.trim();
+
+        if (!titulo || !url) {
+            alert('❌ Completa título y enlace');
+            return;
+        }
+
+        const nuevoDoc = {
+            id: Date.now(),
+            titulo: titulo,
+            url: url,
+            tipo: tipo,
+            desc: desc,
+            fecha: new Date().toLocaleDateString('es-CL'),
+            autor: 'Administrador'
+        };
+
+        documentos.unshift(nuevoDoc);
+        localStorage.setItem('documentosCYZ', JSON.stringify(documentos));
+        
+        document.getElementById('doc-titulo').value = '';
+        document.getElementById('doc-url').value = '';
+        document.getElementById('doc-desc').value = '';
+        
+        renderDocs();
+        agregarNotificacion(`📄 Nuevo documento publicado: ${titulo}`);
+        alert('✅ Documento publicado');
+    };
+
+    window.toggleAdminPanel = function() {
+        const panel = document.getElementById('panel-admin');
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    };
+
+    window.cerrarPanelAdmin = function() {
+        document.getElementById('panel-admin').style.display = 'none';
+    };
+
+    // ==================== NAVEGACIÓN ====================
+    window.ir = function(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    };
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('modal-editar');
+        if (event.target === modal) {
+            cerrarModalEditar();
+        }
+    };
+
+    // ==================== INICIALIZACIÓN ====================
+    renderEquipo();
+    renderDocs();
+    renderMetas();
+    verificarSesionSolicitudes();
+    actualizarCampanita();
+    
+    // Notificación de bienvenida
+    setTimeout(() => {
+        agregarNotificacion('🎉 Bienvenido al portal de Cruz y Cía. ¡Revisa las nuevas utilidades!');
+    }, 1000);
+</script>
+</body>
+</html>
